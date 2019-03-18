@@ -133,13 +133,20 @@ namespace SwaggerEnumFixServer
                 }
 
 
-                groupNode.Add(
-                    new JProperty("x-ms-enum", new JObject
-                    {
-                        new JProperty("name", enumName),
-                        new JProperty("modelAsString", false)
+                try
+                {
+                    groupNode.Add(
+                        new JProperty("x-ms-enum", new JObject
+                        {
+                            new JProperty("name", enumName),
+                            new JProperty("modelAsString", false)
 
-                    }));
+                        }));
+                }
+                catch (Exception)
+                {
+                    // ignore on error like 'already exists'
+                }
             }
         }
 
